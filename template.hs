@@ -1,12 +1,10 @@
 import Data.List.Split
+import Data.Char
 import Data.List
 
 main = do
   contents <- getContents
-  putStrLn $ show $  lines contents)
-
-isHexDigit :: Char -> Bool
-isHexDigit c = elem c $ ['0' .. '9'] ++ ['a' .. 'f']
+  putStrLn $ show $  lines contents
 
 takeDigits :: String -> (String, String)
 takeDigits "" = ("", "")
