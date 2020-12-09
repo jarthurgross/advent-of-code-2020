@@ -9,7 +9,18 @@ import Math.Sequence.Converge
 
 main = do
   contents <- getContents
-  putStrLn $ show $ lines contents
+  putStrLn $ show $ filter (not . (uncurry isPairSum)) $ preambleNumbers 25 $ map readInt $ lines contents
+
+readInt :: String -> Int
+readInt = read
+
+preambleNumbers :: Int -> [Int] -> [([Int], Int)]
+preambleNumbers l ns = scanl' (\((x:xs), y) y' -> (xs ++ [y], y'))  (preamble, n') ns'
+  where (preamble, (n':ns')) = splitAt l ns
+
+isPairSum :: [Int] -> Int -> Bool
+isPairSum [] _ = False
+isPairSum (x:xs) y = (y - x) `elem` xs || isPairSum xs y
 
 takeDigits :: String -> (String, String)
 takeDigits "" = ("", "")
