@@ -11,6 +11,9 @@ main = do
   contents <- getContents
   putStrLn $ show $ lines contents
 
+readInt :: String -> Int
+readInt = read
+
 takeDigits :: String -> (String, String)
 takeDigits "" = ("", "")
 takeDigits (c:cs) = if c `elem` ['0' .. '9'] then (c:ds, ls) else ("", c:cs)
